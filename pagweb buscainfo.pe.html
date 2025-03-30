@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conéctate</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 800px;
+            height: 350px;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .title {
+            font-size: 80px;
+            font-weight: bold;
+            color: black;
+            letter-spacing: 3px;
+            display: inline-block;
+            margin: 0;
+            animation: changeEmoji 2s infinite;
+        }
+
+        @keyframes changeEmoji {
+            0% { content: "🔍 Buscainfo.pe"; }
+            25% { content: "📖 Buscainfo.pe"; }
+            50% { content: "🛠️ Buscainfo.pe"; }
+            75% { content: "👣 Buscainfo.pe"; }
+            100% { content: "🔍 Buscainfo.pe"; }
+        }
+
+        .title::before {
+            content: "🔍 Buscainfo.pe";
+            animation: changeEmoji 2s infinite;
+        }
+
+        .container p {
+            color: #666;
+            font-size: 40px;
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 40px;
+            color: white;
+            background: black;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.3s ease-in-out;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .number {
+            position: absolute;
+            font-size: 50px;
+            color: black;
+            font-family: monospace;
+            opacity: 0.5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    
+    <div class="container">
+        <h1 class="title"></h1>
+        <p>Conectado a varios lugares para ti.</p>
+        <a href="http://wa.me/+51966139149" class="btn">Conéctate</a>
+    </div>
+
+    <script>
+        function createFallingNumbers() {
+            const background = document.getElementById("background");
+            for (let i = 0; i < 100; i++) {
+                let num = document.createElement("div");
+                num.classList.add("number");
+                num.innerText = Math.floor(Math.random() * 10);
+                num.style.left = Math.random() * 100 + "vw";
+                num.style.animationDuration = Math.random() * 5 + 3 + "s";
+                background.appendChild(num);
+            }
+        }
+        createFallingNumbers();
+    </script>
+</body>
+</html>
